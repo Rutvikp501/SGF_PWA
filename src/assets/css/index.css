@@ -1,0 +1,92 @@
+:root{
+   --primary-blue:#18A0BE ;
+   --primary-blue1:rgb(25, 142, 168);
+   --primary-blue2:rgba(25, 142, 168,0.2);
+   --primary-blue3:#3FB0C9;
+   --primary-blue4:rgb(26, 127, 150);
+   --primary-darkblue:#2F354E;
+   --primary-orange:#F58229 ;
+   --blue-color:rgb(35, 178, 255);
+   --blue1-color:rgb(56, 169, 230);
+   --green-color:rgb(96, 189, 53);
+  --green1-color:#DFF2D7;
+  --green2-color:#60bd357e;
+  --green3-color:#38A169;
+  --green4-color:#50bd83;
+  --yellow-color:#FFC01E;
+  --yellow1-color:#FDF5CE;
+  --yellow2-color:#FFF0D9;
+  --yellow3-color:#ffbf1e93;
+  --red-color:#FEE5E2;
+  --red1-color:#FFDBDB;
+  --red2-color:#F84F4F;
+  --red3-color:#f84f4fc5;
+  --red4-color:#f84f4f8e;
+  --red5-color:#dd4b4b;
+}
+
+.otpDiv input:focus{
+   outline-color: var(--primary-orange);
+ }
+ input,textarea,select{
+  border-color: rgba(0, 0, 0, 0.25) !important;
+  background-color: white !important;
+ }
+ input::placeholder,textarea::placeholder{
+   font-size: 0.9rem;
+   opacity: 0.7;
+ }
+ .customFlatpicker{
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.375rem;
+  outline: 2px solid transparent;
+  height: 41px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.144) !important;
+}
+.datePickerIcon{
+  color: #1F1F1F;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0%,-50%);
+  z-index: 1;
+}
+.backdrop-image{
+  position: fixed;
+  opacity: 0.2;
+  right: 0;
+  bottom: -30%;
+  z-index: 0;
+  width: 60rem;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    min-height: 100px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+::-webkit-scrollbar:horizontal {
+    height: 10px; /* Height of the scrollbar */
+}
+input:disabled,textarea:disabled,input[type="checkbox"]:disabled{
+  color: rgba(0,0,0,0.5);
+  opacity: 1 !important;
+}
