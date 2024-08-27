@@ -45,8 +45,8 @@ export const loginFn = async (params) => {
         toast.error(`Uh-oh,...🤯${error?.response?.data?.message}`);
     }
 }
-export const otpVerificationFn = async (params) => {
-
+export const sendotpFn = async (params) => {
+const customUrl =  `${url}/api/adminapi/login`
     try {
         const res = await axios.post(customUrl, params, {
             headers: {
@@ -80,7 +80,41 @@ export const otpVerificationFn = async (params) => {
         toast.error(`Uh-oh,...🤯${error?.response?.data?.message}`);
     }
 }
-
+export const otpVerificationFn = async (params) => {
+    const customUrl =  `${url}/api/adminapi/login`
+        try {
+            const res = await axios.post(customUrl, params, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true,
+            })
+    
+            const promise = new Promise((resolve) => {
+                setTimeout(() => resolve(res.data), 1000);
+            });
+            await toast.promise(
+                promise,
+                {
+                    pending: 'Hm...Let me check',
+                    success: {
+                        render({ data: { message } }) {
+                            console.log(message);
+                            return `${message}`;
+                        }
+                    },
+                    error: {
+                        render({ data: { res } }) {
+                            return `Uh-oh,...🤯${res?.data}`;
+                        }
+                    }
+                }
+            );
+            return res.data
+        } catch (error) {
+            toast.error(`Uh-oh,...🤯${error?.response?.data?.message}`);
+        }
+    }
 export const getProfileDetails = async () => {
 
     try {
