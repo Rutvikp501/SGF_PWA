@@ -14,18 +14,20 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import FImage from '../../assets/images/png/Image.png';
 import { sendotpFn } from '../../services/API';
 function ForgetPass() {
-    const [email, setEmail] = useState('');
+    const [email_id, setEmail] = useState('');
     const navigate = useNavigate(); // Initialize navigate
     const toast = useToast();
     const [isLoading, setisLoading] = useState(false)
     const handleSendOTP = async () => {
         setisLoading(true)
         try {
-          const payload = {email}
+          const payload = {email_id}
           const res = await sendotpFn(payload)
-          if(res?.status){
+          console.log(res);
+          
+          if(res?.success){
             setTimeout(() => {
-                navigate('/submit-otp', { state: { email } });
+                navigate('/otpverification', { state: { email_id } });
               setisLoading(false)
             }, 1500);
           }else{
@@ -58,7 +60,7 @@ function ForgetPass() {
         <InputGroup mb="1rem" borderRadius="2rem">
           <Input
             placeholder="example@gmail.com"
-            value={email}
+            value={email_id}
             onChange={(e) => setEmail(e.target.value)}
             bg="#fff"
             color="#3A9FB6"
