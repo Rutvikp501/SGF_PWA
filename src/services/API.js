@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import { toast } from "react-toastify";
 import CryptoJS from 'crypto-js';
+import { getSessionToken } from "../utils/comon";
 
 const secret = import.meta.env.VITE_SECRET;
 //export let url = "https://sgf-consultant.onrender.com";
@@ -9,7 +10,6 @@ export let url = "http://localhost:5001";
 let savedEmail = '';
 export const loginFn = async (params) => {
     console.log(params);
-    
     axios.defaults.withCredentials = true
     const customUrl = `${url}/api/adminapi/login`
     try {
@@ -122,13 +122,27 @@ export const otpVerificationFn = async (params) => {
 export const getProfileDetails = async () => {
     const customUrl = `${url}/api/adminapi/login`
     try {
-        const res = await axios.get(customUrl, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            withCredentials: true,
-        })
+        const token = getSessionToken()
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        const res = await axios.get(customUrl, {headers})
+        return res.data
+    } catch (error) {
+        toast.error(`Uh-oh,...🤯${error?.response?.data?.message}`);
+    }
+}
 
+export const getDashboardLeadscount = async () => {
+    const customUrl = `${url}/api/leadapi/getLeadscount`
+    try {
+        const token = getSessionToken()
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        const res = await axios.get(customUrl, {headers})
         return res.data
     } catch (error) {
         toast.error(`Uh-oh,...🤯${error?.response?.data?.message}`);

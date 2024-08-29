@@ -10,16 +10,23 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { getDashboardLeadscount } from '../../services/API';
+import { getSessionDecode } from '../../utils/comon';
 
 const Home = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const toast = useToast();
-const sessiondata = sessionStorage.getItem("token")
-
+  const [userData, setUserData] = useState(null);
 useEffect(() => {
-    console.log(sessiondata);
- 
+    const res = getDashboardLeadscount()
+    const tokenData = getSessionDecode();
+    if (tokenData) {
+      setUserData(tokenData);
+    }
+    // const getSessionData = getSessionDecode()
+    console.log(tokenData);
+    
   }, [toast]);
 
   if (loading) {

@@ -30,8 +30,6 @@ function Login() {
     try {
       const payload = { email_id, password }
       const res = await loginFn(payload)
-      console.log(res);
-
       if (res?.success) {
         sessionStorage.setItem('token', res.data)
         setTimeout(() => {
